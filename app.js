@@ -1,11 +1,8 @@
 require('@babel/register');
 const path = require('path');
 const express = require('express');
-const React = require('react');
-const ReactDOMServer = require('react-dom/server');
 
-const Layout = require('./views/Layout');
-
+const indexRouter = require('./routes/views/index.router');
 const registerRouter = require('./routes/views/register.router');
 
 const app = express();
@@ -18,13 +15,7 @@ app.use(express.static(publicPath));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  const layout = React.createElement(Layout);
-  const html = ReactDOMServer.renderToStaticMarkup(layout);
-  res.write('<!DOCTYPE html>');
-  res.end(html);
-});
-
+app.use('/', indexRouter);
 app.use('/register', registerRouter);
 
 app.listen(PORT, () => {
