@@ -6,6 +6,8 @@ const ReactDOMServer = require('react-dom/server');
 
 const Layout = require('./views/Layout');
 
+const registerRouter = require('./routes/views/register.router');
+
 const app = express();
 
 const PORT = 3000;
@@ -22,6 +24,8 @@ app.get('/', (req, res) => {
   res.write('<!DOCTYPE html>');
   res.end(html);
 });
+
+app.use('/register', registerRouter);
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
