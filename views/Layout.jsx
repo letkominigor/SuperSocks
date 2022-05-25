@@ -1,6 +1,6 @@
 const React = require('react');
 
-module.exports = function Layout() {
+module.exports = function Layout({ children }) {
   return (
     <html lang="en">
       <head>
@@ -9,7 +9,10 @@ module.exports = function Layout() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Super Socks</title>
       </head>
-      <body />
+      <body>
+        {children}
+        <div>Privet</div>
+      </body>
     </html>
   );
 };
