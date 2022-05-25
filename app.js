@@ -1,4 +1,5 @@
 require('@babel/register');
+const path = require('path');
 const express = require('express');
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
@@ -9,6 +10,12 @@ const app = express();
 
 const PORT = 3000;
 
+const publicPath = path.resolve('public');
+
+app.use(express.static(publicPath));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 app.get('/', (req, res) => {
   const layout = React.createElement(Layout);
   const html = ReactDOMServer.renderToStaticMarkup(layout);
@@ -17,5 +24,6 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
   console.log('Listening on port: ', PORT);
 });
