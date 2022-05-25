@@ -3,7 +3,7 @@ const Navbar = require('./Navbar');
 const Main = require('./Main');
 const Footer = require('./Footer');
 
-module.exports = function Layout({ children }) {
+module.exports = function Layout({ user, children }) {
   return (
     <html lang="en">
       <head>
@@ -14,7 +14,7 @@ module.exports = function Layout({ children }) {
         <title>Super Socks</title>
       </head>
       <body className="js-body">
-        <Navbar />
+        <Navbar user={user} />
         <Main />
         {children}
         <Footer />

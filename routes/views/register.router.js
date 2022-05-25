@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const session = require('express-session');
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const bcrypt = require('bcrypt');
