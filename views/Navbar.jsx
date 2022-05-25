@@ -20,8 +20,8 @@ module.exports = function Navbar({ user }) {
             <nav>
               <ul style={{ display: 'flex', flexDirection: 'row', listStyleType: 'none' }}>
                 <li><a href="/">Logo</a></li>
-                <li><a href="/register">Register</a></li>
-                <li><a href="/">Login</a></li>
+                <li><a href="/register" className="js-register-link">Register</a></li>
+                <li><a href="/login" className="js-login-link">Login</a></li>
                 <li><a href="/">Socks</a></li>
               </ul>
             </nav>

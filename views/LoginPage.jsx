@@ -1,8 +1,8 @@
 const React = require('react');
 
-module.exports = function RegisterPage() {
+module.exports = function LoginPage() {
   return (
-    <form action="/register" method="POST" className="js-register">
+    <form action="/login" method="POST" className="js-register">
       <label htmlFor="username">Username</label>
       <input
         id="username"

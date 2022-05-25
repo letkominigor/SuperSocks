@@ -13,7 +13,7 @@ module.exports = function Layout({ children }) {
         <script src="/js/application.js" defer />
         <title>Super Socks</title>
       </head>
-      <body>
+      <body className="js-body">
         <Navbar />
         <Main />
         {children}
