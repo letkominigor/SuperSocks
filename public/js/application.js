@@ -2,8 +2,9 @@ const bodyElement = document.querySelector('.js-body');
 const registerLink = document.querySelector('.js-register-link');
 const loginLink = document.querySelector('.js-login-link');
 const buyButton = document.querySelector('.js-buy');
-const favouriteButton = document.querySelector('.js-favourite');
-const basket = document.querySelector('.js-basket');
+// const favouriteButton = document.querySelector('.js-favourite');
+const creatorForm = document.querySelector('.js-form-creator');
+// const basket = document.querySelector('.js-basket');
 
 const sock = document.querySelector('.js-sock');
 const colorSelect = document.querySelector('.js-color');
@@ -54,8 +55,39 @@ function handleSelectPictureClick(e) {
 
 // }
 
-async function handleFavouriteSubmit(e) {
+async function handleFormSubmit(e) {
   e.preventDefault();
+
+  let color = colorSelect.value;
+  let pattern = patternSelect.value;
+  let picture = pictureSelect.value;
+  const body = JSON.stringify({ color, pattern, picture });
+
+  if (e.target.classList.contains('js-favourite')) {
+    const response = await fetch('/creator', {
+      method: 'POST',
+      body,
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    await response.text();
+  }
+
+  if (e.target.classList.contains('js-buy')) {
+    const response = await fetch('/creator/buy', {
+      method: 'POST',
+      body,
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    await response.text();
+  }
+
+  if (e.target.classList.contains('js-clear-form')) {
+    color = 'red';
+    pattern = 1;
+    picture = 1;
+  }
 }
 
 async function handleBuySubmit(e) {
@@ -82,13 +114,13 @@ if (loginLink) {
   loginLink.addEventListener('click', handleLoginLink);
 }
 
-if (favouriteButton) {
-  favouriteButton.addEventListener('submit', handleFavouriteSubmit);
+if (creatorForm) {
+  creatorForm.addEventListener('click', handleFormSubmit);
 }
 
-if (buyButton) {
-  buyButton.addEventListener('submit', handleBuySubmit);
-}
+// if (buyButton) {
+//   buyButton.addEventListener('submit', handleBuySubmit);
+// }
 
 if (colorSelect) {
   colorSelect.addEventListener('click', handleSelectColorClick);
