@@ -8,13 +8,16 @@ h1 {
 	width: 125px;
 	height: 299px;
 	background: #ccc;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
 	border-top: solid 10px rebeccapurple;
 	border-bottom: dashed 1px rebeccapurple;
 	z-index: 1;
   --pseudo-after-background: #ccc;
   --pseudo-before-background: #ccc;
-  --pseudo-after-pattern: ;
-  --pseudo-before-pattern: ;
+  --pseudo-after-picture: none;
+  --pseudo-before-picture: none;
 }
 
 .sock:before {
@@ -27,6 +30,7 @@ h1 {
 	z-index:-1;
 	border-radius: 0 0 75px 35px;
 	background: var(--pseudo-before-background);
+  background-image: var(--pseudo-before-picture);
 }
 .sock:after {
 	content: '';

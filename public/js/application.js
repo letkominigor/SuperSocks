@@ -2,12 +2,11 @@ const bodyElement = document.querySelector('.js-body');
 const registerLink = document.querySelector('.js-register-link');
 const loginLink = document.querySelector('.js-login-link');
 const favouriteButton = document.querySelector('.js-favourite');
-const colorSelect = document.querySelector('.color');
-const patternSelect = document.querySelector('.pattern');
-const pictureSelect = document.querySelector('.picture');
 
-
-const sock = document.querySelector('.sock');
+const sock = document.querySelector('.js-sock');
+const colorSelect = document.querySelector('.js-color');
+const patternSelect = document.querySelector('.js-pattern');
+const pictureSelect = document.querySelector('.js-picture');
 
 async function handleRegisterLink(e) {
   e.preventDefault();
@@ -47,6 +46,13 @@ function handleSelectColorClick(e) {
   sock.style.background = `${color}`;
 }
 
+function handleSelectPictureClick(e) {
+  e.preventDefault();
+
+  console.log(e.target.value);
+  sock.style.backgroundImage = `url(${e.target.value})`;
+}
+
 if (registerLink) {
   registerLink.addEventListener('click', handleRegisterLink);
 }
@@ -67,6 +73,6 @@ if (colorSelect) {
 //   patternSelect.addEventListener('click', handleSelectClick);
 // }
 
-// if (pictureSelect) {
-//   pictureSelect.addEventListener('click', handleSelectClick);
-// }
+if (pictureSelect) {
+  pictureSelect.addEventListener('click', handleSelectPictureClick);
+}

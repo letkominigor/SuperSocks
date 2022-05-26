@@ -12,7 +12,7 @@ module.exports = function Configurator({ user }) {
         }}
       >
         <label htmlFor="color">Цвет:</label>
-        <select id="color" className="color" name="color">
+        <select id="color" className="js-color" name="color">
           <option>red</option>
           <option>blue</option>
           <option>green</option>
@@ -23,7 +23,7 @@ module.exports = function Configurator({ user }) {
           <option>aquamarine</option>
         </select>
         <label htmlFor="pattern">Узор:</label>
-        <select id="pattern" className="pattern" name="pattern">
+        <select id="pattern" className="js-pattern" name="pattern">
           <option>1</option>
           <option>2</option>
           <option>3</option>
@@ -33,8 +33,8 @@ module.exports = function Configurator({ user }) {
           <option>7</option>
         </select>
         <label htmlFor="picture">Картинка:</label>
-        <select id="picture" className="picture" name="picture">
-          <option>1</option>
+        <select id="picture" className="js-picture" name="picture">
+          <option value="/images/goku.jpeg">1</option>
           <option>2</option>
           <option>3</option>
           <option>4</option>
