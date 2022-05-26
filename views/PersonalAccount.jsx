@@ -2,12 +2,12 @@ const React = require('react');
 const FavoriteSock = require('./FavoriteSock');
 const Layout = require('./Layout');
 
-module.exports = function PersonalAccount({ favoriteSocks }) {
+module.exports = function PersonalAccount({ user }) {
   return (
     <Layout>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         {
-          favoriteSocks.map((sock) => <FavoriteSock key={sock.id} sock={sock} />)
+          user.map((sock) => <FavoriteSock key={sock.id} sock={sock} />)
         }
       </div>
       <div style={{ display: 'flex' }}>

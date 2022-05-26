@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "postgres",
-    "password": "1234",
-    "database": "socks__dataBase",
+    "password": 1234,
+    "database": "socks",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
