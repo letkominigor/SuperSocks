@@ -6,6 +6,7 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
       },
       color: {
         allowNull: false,
@@ -19,9 +20,14 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT,
       },
-      user_id: {
+      favorite_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        references: {
+          model: 'Favorites',
+          key: 'id',
+          as: 'sock_id',
+        },
       },
       createdAt: {
         allowNull: false,

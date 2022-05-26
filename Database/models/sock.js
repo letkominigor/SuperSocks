@@ -4,12 +4,17 @@ const {
 
 module.exports = (sequelize, DataTypes) => {
   class Sock extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-
+    static associate({ Favorite, Purchase, User }) {
+      Sock.hasMany(Favorite, { foreignKey: 'sock_id' });
+      Sock.hasMany(Purchase, { foreignKey: 'sock_id' });
+      Sock.belongsToMany(User, {
+        through:
+        Purchase,
+        Favorite,
+        foreignKey: 'sock_id',
+        otherKey: 'user_id',
+      });
+    }
   }
   Sock.init({
     id: {
@@ -34,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.INTEGER,
       references: {
-        model: 'Users',
+        model: 'Socks',
         key: 'id',
       },
     },
@@ -49,6 +54,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Sock',
+
   });
   return Sock;
 };

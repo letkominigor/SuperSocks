@@ -1,22 +1,34 @@
 const React = require('react');
+const FavoriteSock = require('./FavoriteSock');
+const Layout = require('./Layout');
 
-module.exports = function PersonalAccount() {
+module.exports = function PersonalAccount({ favoriteSocks }) {
   return (
-    <div>
+    <Layout>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        {
+          favoriteSocks.map((sock) => <FavoriteSock key={sock.id} sock={sock} />)
+        }
+      </div>
+      <div style={{ display: 'flex' }}>
+        <button type="submit" className="js-buy">Buy</button>
+        <button type="submit" className="js-delete">Delete</button>
+      </div>
+      <div />
+
       <form action="/account" method="POST" className="Favorite">
         <div className="Icon">
           <img src="" alt="" />
-          <button type="submit" className="buy">Buy</button>
-          <button type="submit" className="delete">Delete</button>
+
         </div>
       </form>
-      <form action="/account" method="GET" className="Purchased">
+      {/* <form action="/account" method="GET" className="Purchased">
         <div className="Icon">
           <img src="" alt="" />
           <button type="submit" className="delete">Delete</button>
         </div>
-      </form>
-    </div>
+      </form> */}
+    </Layout>
 
   );
 };

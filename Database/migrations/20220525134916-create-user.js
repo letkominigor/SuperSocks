@@ -16,12 +16,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT,
       },
-      favorites: {
-        type: Sequelize.TEXT,
-      },
-      purchased: {
-        type: Sequelize.TEXT,
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
