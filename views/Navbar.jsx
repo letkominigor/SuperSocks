@@ -10,9 +10,9 @@ module.exports = function Navbar({ user }) {
               <ul style={{ display: 'flex', flexDirection: 'row', listStyleType: 'none' }}>
                 <li><a href="/">Logo</a></li>
                 <li><a href="/logout" className="js-logout">Logout</a></li>
-                <li><a href="/">Favourite</a></li>
                 <li><a href="/creator" className="js-creator">Generate a sock</a></li>
-                <li><a href="/socks-list" className="js-socks-list">Socks</a></li>
+                <li><a href="/socks-list" className="js-socks-list">Favourite</a></li>
+                <li><a href="/" className="js-basket">Basket</a></li>
               </ul>
             </nav>
           )
@@ -22,12 +22,11 @@ module.exports = function Navbar({ user }) {
                 <li><a href="/">Logo</a></li>
                 <li><a href="/register" className="js-register-link">Register</a></li>
                 <li><a href="/login" className="js-login-link">Login</a></li>
-                <li><a href="/">Socks</a></li>
+                <li><a href="/creator" className="js-creator">Generate a sock</a></li>
               </ul>
             </nav>
           )
       }
     </header>
-
   );
 };

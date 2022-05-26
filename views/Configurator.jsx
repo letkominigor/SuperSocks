@@ -4,9 +4,9 @@ const Layout = require('./Layout');
 module.exports = function Configurator({ user }) {
   return (
     <Layout user={user}>
+
       <form
-        method="POST"
-        action="/creator"
+        className="js-form-creator"
         style={{
           display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
         }}
@@ -46,8 +46,8 @@ module.exports = function Configurator({ user }) {
           <div className="js-sock-picture sock-picture" />
           <div className="sock-pattern" />
         </div>
-        <button type="submit" className="js-basket">Добавить в корзину</button>
         <button type="submit" className="js-favourite">Добавить в избранное</button>
+        <button type="submit" className="js-buy">Добавить в корзину</button>
         <button type="submit" className="js-clear-form">Сбросить форму</button>
       </form>
     </Layout>
