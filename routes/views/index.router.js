@@ -14,9 +14,7 @@ router.get('/', async (req, res) => {
     res.write('<!DOCTYPE html>');
     res.end(html);
   }
-  const layout = React.createElement(Layout, {
-    user: req.session.user
-  });
+  const layout = React.createElement(Layout);
   const html = ReactDOMServer.renderToStaticMarkup(layout);
   res.write('<!DOCTYPE html>');
   res.end(html);
