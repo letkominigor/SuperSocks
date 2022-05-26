@@ -6,7 +6,11 @@ const session = require('express-session');
 const indexRouter = require('./routes/views/index.router');
 const registerRouter = require('./routes/views/register.router');
 const loginRouter = require('./routes/views/login.router');
+
 const creatorRouter = require('./routes/views/socksCreator.router');
+
+const logoutRouter = require('./routes/views/logout.router');
+
 
 const { sessionConfig } = require('./config/config');
 
@@ -25,7 +29,11 @@ app.use(express.json());
 app.use('/', indexRouter);
 app.use('/register', registerRouter);
 app.use('/login', loginRouter);
+
 app.use('/creator', creatorRouter);
+
+app.use('/logout', logoutRouter);
+
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
