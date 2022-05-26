@@ -6,9 +6,9 @@ module.exports = function FavoriteSock({ sock }) {
       <div>
         PICTURE
       </div>
-      <div>Цвет: {sock.color}</div>
-      <div>Картинка: {sock.picture}</div>
-      <div>Узор: {sock.pattern}</div>
+      <div>Цвет: {sock['Socks.color']}</div>
+      <div>Картинка: {sock['Socks.picture']}</div>
+      <div>Узор: {sock['Socks.pattern']}</div>
     </div>
   );
 };
