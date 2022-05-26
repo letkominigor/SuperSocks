@@ -1,16 +1,23 @@
 const router = require('express').Router();
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
-const bcrypt = require('bcrypt');
+
+const { Favorite, Sock } = require('../../Database/models');
+
 const PersonalAccount = require('../../views/PersonalAccount');
 
-
-router.get('/', (req, res) => {
-  const personalAccount = React.createElement(PersonalAccount);
+router.get('/', async (req, res) => {
+  const favoriteSocks = await Favorite.findAll({
+    where: { user_id: req.session.user.id },
+    include: {
+      model: Sock,
+    },
+  });
+  console.log(favoriteSocks);
+  const personalAccount = React.createElement(PersonalAccount, { favoriteSocks });
   const html = ReactDOMServer.renderToStaticMarkup(personalAccount);
+  res.write('<!DOCTYPE html>');
   res.end(html);
 });
 
-router.post('/', async(req, res)=>{
-    const 
-})
+module.exports = router;
