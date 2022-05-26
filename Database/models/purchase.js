@@ -3,12 +3,13 @@ const {
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class Purchased extends Model {
-    static associate({ User }) {
-      Purchased.belongsTo(User, { foreignKey: 'user_id' });
+  class Purchase extends Model {
+    static associate({ User, Sock }) {
+      Purchase.belongsTo(User, { foreignKey: 'user_id' });
+      Purchase.belongsTo(Sock, { foreignKey: 'id' });
     }
   }
-  Purchased.init({
+  Purchase.init({
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -37,7 +38,8 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     sequelize,
-    modelName: 'Purchased',
+    modelName: 'Purchase',
+    tableName: 'Purchases',
   });
-  return Purchased;
+  return Purchase;
 };

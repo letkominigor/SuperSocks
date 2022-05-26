@@ -12,7 +12,7 @@ module.exports = function Navbar({ user }) {
                 <li><a href="/logout" className="js-logout">Logout</a></li>
                 <li><a href="/">Favourite</a></li>
                 <li><a href="/creator" className="js-creator">Generate a sock</a></li>
-                <li><a href="/">Socks</a></li>
+                <li><a href="/socks-list" className="js-socks-list">Socks</a></li>
               </ul>
             </nav>
           )

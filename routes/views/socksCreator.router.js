@@ -4,6 +4,7 @@ const ReactDOMServer = require('react-dom/server');
 const Configurator = require('../../views/Configurator');
 
 const { Sock } = require('../../Database/models');
+const { Favorite } = require('../../Database/models');
 
 router.get('/', async (req, res) => {
   const configurator = React.createElement(Configurator, { user: req.session.user.login });
@@ -17,9 +18,12 @@ router.post('/', async (req, res) => {
   const { pattern } = req.body;
   console.log(req.session);
 
-  await Sock.create({
+  const sock = await Sock.create({
     color, picture, pattern, user_id: req.session.user.id,
   });
+
+  await Favorite.create({ user_id: req.session.user.id, sock_id: sock.id });
+
   res.redirect('/');
 });
 

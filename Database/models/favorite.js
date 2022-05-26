@@ -4,8 +4,9 @@ const {
 
 module.exports = (sequelize, DataTypes) => {
   class Favorite extends Model {
-    static associate({ User }) {
+    static associate({ User, Sock }) {
       Favorite.belongsTo(User, { foreignKey: 'user_id' });
+      Favorite.belongsTo(Sock, { foreignKey: 'sock_id' });
     }
   }
   Favorite.init({
@@ -20,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     sock_id: {
       allowNull: false,
       type: DataTypes.INTEGER,
+
     },
     createdAt: {
       allowNull: false,
@@ -32,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Favorite',
+    tableName: 'Favorites',
   });
   return Favorite;
 };
