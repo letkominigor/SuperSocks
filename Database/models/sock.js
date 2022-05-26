@@ -4,30 +4,22 @@ const {
 
 module.exports = (sequelize, DataTypes) => {
   class Sock extends Model {
-    static associate({ Favorite, Purchase, User }) {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate({ User, Favorite }) {
+      // define association here
       Sock.hasMany(Favorite, { foreignKey: 'sock_id' });
-      Sock.hasMany(Purchase, { foreignKey: 'sock_id' });
       Sock.belongsToMany(User, {
-        through:
-        Purchase,
-        Favorite,
-        foreignKey: 'sock_id',
+        through: 'sock_id',
         otherKey: 'user_id',
       });
     }
   }
   Sock.init({
-    id: {
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-      type: DataTypes.INTEGER,
-    },
     color: {
-      allowNull: false,
-      type: DataTypes.TEXT,
-    },
-    picture: {
       allowNull: false,
       type: DataTypes.TEXT,
     },
@@ -35,13 +27,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.TEXT,
     },
-    user_id: {
+    picture: {
       allowNull: false,
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'Socks',
-        key: 'id',
-      },
+      type: DataTypes.TEXT,
     },
     createdAt: {
       allowNull: false,
@@ -54,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Sock',
-
+    tableName: 'Socks',
   });
   return Sock;
 };

@@ -1,25 +1,23 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Favorites', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-      },
       user_id: {
-        allowNull: false,
         type: Sequelize.INTEGER,
+        allowNull: false,
+        primaryKey: true,
         references: {
           model: 'Users',
-          key: 'id',
-          as: 'user_id',
+          key: 'id', // необязательно при дефолтном названии `id`
         },
       },
       sock_id: {
-        allowNull: false,
         type: Sequelize.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        references: {
+          model: 'Socks',
+          key: 'id', // необязательно при дефолтном названии `id`
+        },
       },
       createdAt: {
         allowNull: false,
