@@ -12,6 +12,7 @@ module.exports = function Layout({ user, children }) {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="/js/application.js" defer />
+        <link rel="stylesheet" href="/styles/style.css" />
         <title>Super Socks</title>
       </head>
       <body className="js-body">
