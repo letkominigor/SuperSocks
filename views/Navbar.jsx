@@ -9,7 +9,7 @@ module.exports = function Navbar({ user }) {
             <nav>
               <ul style={{ display: 'flex', flexDirection: 'row', listStyleType: 'none' }}>
                 <li><a href="/">Logo</a></li>
-                <li><a href="/">Logout</a></li>
+                <li><a href="/logout" className="js-logout">Logout</a></li>
                 <li><a href="/">Favourite</a></li>
                 <li><a href="/">Shop basket</a></li>
                 <li><a href="/">Socks</a></li>
