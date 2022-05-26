@@ -14,7 +14,7 @@ module.exports = function Layout({ user, children }) {
         <title>Super Socks</title>
       </head>
       <body className="js-body">
-        <Navbar user={user} />
+        <Navbar user={user} className="js-navbar" />
         <Main />
         {children}
         <Footer />
