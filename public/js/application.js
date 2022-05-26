@@ -1,7 +1,9 @@
 const bodyElement = document.querySelector('.js-body');
 const registerLink = document.querySelector('.js-register-link');
 const loginLink = document.querySelector('.js-login-link');
+const buyButton = document.querySelector('.js-buy');
 const favouriteButton = document.querySelector('.js-favourite');
+const basket = document.querySelector('.js-basket');
 
 const sock = document.querySelector('.js-sock');
 const colorSelect = document.querySelector('.js-color');
@@ -32,15 +34,10 @@ async function handleLoginLink(e) {
   bodyElement.innerHTML = html;
 }
 
-async function handleFavouriteSubmit(e) {
-  e.preventDefault();
-}
-
 function handleSelectColorClick(e) {
   e.preventDefault();
 
   const color = e.target.value;
-
   sock.style.setProperty('--pseudo-after-background', `${color}`);
   sock.style.setProperty('--pseudo-before-background', `${color}`);
   sock.style.background = `${color}`;
@@ -49,8 +46,32 @@ function handleSelectColorClick(e) {
 function handleSelectPictureClick(e) {
   e.preventDefault();
 
-  console.log(e.target.value);
   sock.style.backgroundImage = `url(${e.target.value})`;
+}
+
+// function handleSelectPatternClick(e) {
+//   e.preventDefault();
+
+// }
+
+async function handleFavouriteSubmit(e) {
+  e.preventDefault();
+}
+
+async function handleBuySubmit(e) {
+  e.preventDefault();
+
+  const {
+    method,
+    action: url,
+  } = e.target;
+
+  const response = await fetch(url, {
+    method,
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  await response.text();
 }
 
 if (registerLink) {
@@ -65,12 +86,16 @@ if (favouriteButton) {
   favouriteButton.addEventListener('submit', handleFavouriteSubmit);
 }
 
+if (buyButton) {
+  buyButton.addEventListener('submit', handleBuySubmit);
+}
+
 if (colorSelect) {
   colorSelect.addEventListener('click', handleSelectColorClick);
 }
 
 // if (patternSelect) {
-//   patternSelect.addEventListener('click', handleSelectClick);
+//   patternSelect.addEventListener('click', handleSelectPatternClick);
 // }
 
 if (pictureSelect) {

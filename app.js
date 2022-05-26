@@ -16,6 +16,8 @@ const app = express();
 
 const PORT = 3000;
 
+app.locals.count = 0;
+
 const publicPath = path.resolve('public');
 
 app.use(session(sessionConfig));

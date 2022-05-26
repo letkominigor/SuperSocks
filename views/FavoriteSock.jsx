@@ -7,7 +7,7 @@ module.exports = function FavoriteSock({ sock }) {
         PICTURE
       </div>
       <div>Цвет: {sock['Sock.color']}</div>
-      <div>Картинка: {sock['Sock.picture']}</div>
+      <img src={`${sock['Sock.picture']}`} alt="picture" style={{ width: 75, height: 80, borderRadius: 10 }} />
       <div>Узор: {sock['Sock.pattern']}</div>
     </div>
   );
