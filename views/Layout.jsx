@@ -2,6 +2,7 @@ const React = require('react');
 const Navbar = require('./Navbar');
 const Main = require('./Main');
 const Footer = require('./Footer');
+// const PersonalAccount = require('./PersonalAccount');
 
 module.exports = function Layout({ user, children }) {
   return (
@@ -14,7 +15,7 @@ module.exports = function Layout({ user, children }) {
         <title>Super Socks</title>
       </head>
       <body className="js-body">
-        <Navbar user={user} />
+        <Navbar user={user} className="js-navbar" />
         <Main />
         {children}
         <Footer />

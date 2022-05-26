@@ -3,32 +3,17 @@ const {
 } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class Sock extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-
+  class Purchased extends Model {
+    static associate({ User }) {
+      Purchased.belongsTo(User, { foreignKey: 'user_id' });
+    }
   }
-  Sock.init({
+  Purchased.init({
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: DataTypes.INTEGER,
-    },
-    color: {
-      allowNull: false,
-      type: DataTypes.TEXT,
-    },
-    picture: {
-      allowNull: false,
-      type: DataTypes.TEXT,
-    },
-    pattern: {
-      allowNull: false,
-      type: DataTypes.TEXT,
     },
     user_id: {
       allowNull: false,
@@ -37,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
         model: 'Users',
         key: 'id',
       },
+    },
+    sock_id: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
     },
     createdAt: {
       allowNull: false,
@@ -48,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     sequelize,
-    modelName: 'Sock',
+    modelName: 'Purchased',
   });
-  return Sock;
+  return Purchased;
 };
