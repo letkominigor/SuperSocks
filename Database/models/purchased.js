@@ -4,9 +4,9 @@ const {
 
 module.exports = (sequelize, DataTypes) => {
   class Purchased extends Model {
-    // static associate(models) {
-
-    // }
+    static associate({ User }) {
+      Purchased.belongsTo(User, { foreignKey: 'user_id' });
+    }
   }
   Purchased.init({
     id: {
@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
     user_id: {
       allowNull: false,
       type: DataTypes.INTEGER,
+      references: {
+        model: 'Users',
+        key: 'id',
+      },
     },
     sock_id: {
       allowNull: false,
