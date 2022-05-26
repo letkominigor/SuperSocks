@@ -1,25 +1,23 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Socks', {
+    await queryInterface.createTable('Favorites', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
-      },
-      color: {
-        allowNull: false,
-        type: Sequelize.TEXT,
-      },
-      picture: {
-        allowNull: false,
-        type: Sequelize.TEXT,
-      },
-      pattern: {
-        allowNull: false,
-        type: Sequelize.TEXT,
+        onDelete: 'CASCADE',
       },
       user_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id',
+          as: 'user_id',
+        },
+      },
+      sock_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
@@ -34,6 +32,6 @@ module.exports = {
     });
   },
   async down(queryInterface) {
-    await queryInterface.dropTable('Socks');
+    await queryInterface.dropTable('Favorites');
   },
 };
