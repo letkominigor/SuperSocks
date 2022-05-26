@@ -1,23 +1,12 @@
 const React = require('react');
-const Navbar = require('./Navbar');
-const Main = require('./Main');
-const Footer = require('./Footer');
+const Layout = require('./Layout');
 
-module.exports = function Configurator({ user, children }) {
+module.exports = function Configurator({ user }) {
   return (
-    <html lang="ru">
-      <head>
-        <meta charSet="UTF-8" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="/js/application.js" defer />
-        <title>Super Socks</title>
-      </head>
-      <body className="js-configurator">
-        <Navbar user={user} />
-        <Main />
-        цвет
-        <select className="colorselect" data-action="" name="select-one">
+    <Layout user={user}>
+      <form method="POST" action="/creator" style={{ display: 'flex', flexDirection: 'column' }}>
+        <label htmlFor="color">Цвет:</label>
+        <select id="color" className="color" name="color">
           <option>красный</option>
           <option>синий</option>
           <option>зелёный</option>
@@ -26,8 +15,8 @@ module.exports = function Configurator({ user, children }) {
           <option>чёрный</option>
           <option>голубой</option>
         </select>
-        узор
-        <select className="patternselect" data-action="" name="select-two">
+        <label htmlFor="color">Узор:</label>
+        <select id="pattern" className="pattern" name="pattern">
           <option>1</option>
           <option>2</option>
           <option>3</option>
@@ -36,8 +25,8 @@ module.exports = function Configurator({ user, children }) {
           <option>6</option>
           <option>7</option>
         </select>
-        картинка
-        <select className="pictureselect" data-action="" name="select-three">
+        <label htmlFor="picture">Картинка:</label>
+        <select id="picture" className="picture" name="picture">
           <option>1</option>
           <option>2</option>
           <option>3</option>
@@ -46,9 +35,13 @@ module.exports = function Configurator({ user, children }) {
           <option>6</option>
           <option>7</option>
         </select>
-        {children}
-        <Footer />
-      </body>
-    </html>
+        <div className="js-sock">
+          Hi
+        </div>
+        <button type="submit" className="js-basket">Добавить в корзину</button>
+        <button type="submit" className="js-favourite">Добавить в избранное</button>
+        <button type="submit" className="js-clear-form">Сбросить форму</button>
+      </form>
+    </Layout>
   );
 };
