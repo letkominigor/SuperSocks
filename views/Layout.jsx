@@ -1,6 +1,7 @@
 const React = require('react');
 const Navbar = require('./Navbar');
 const Footer = require('./Footer');
+const Main = require('./Main');
 // const PersonalAccount = require('./PersonalAccount');
 
 module.exports = function Layout({ user, children }) {

@@ -46,26 +46,29 @@ if (document.querySelector('.js-register')) {
   })
 }
 
-
-document.querySelector('.js-login').addEventListener('submit', async (event) =>{
-  event.preventDefault();
-
-  const { username, password } = event.target;
-
-  const response = await fetch('/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({username: username.value, password: password.value})
+if (document.querySelector('.js-login')) {
+  document.querySelector('.js-login').addEventListener('submit', async (event) =>{
+    event.preventDefault();
+  
+    const { username, password } = event.target;
+  
+    const response = await fetch('/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({username: username.value, password: password.value})
+    })
+  
+  
+    if (response.status == 409) {
+      document.querySelector(".js-login-error").innerHTML = 'Неправильные логин или пароль'
+    } else {
+      window.location.href = '/'
+    }
+    
   })
 
+}
 
-  if (response.status == 409) {
-    document.querySelector(".js-login-error").innerHTML = 'Неправильные логин или пароль'
-  } else {
-    window.location.href = '/'
-  }
-  
-})
 
 // async function handleRegisterLink(e) {
 //   e.preventDefault();
