@@ -19,7 +19,7 @@ module.exports = function RegisterPage() {
       />
       <button type="submit">Submit</button>
     </form>
-    <div className="js-div-error"></div>
+    <div className="js-register-error"></div>
     </Layout>
   );
 };

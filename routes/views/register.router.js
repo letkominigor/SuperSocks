@@ -41,7 +41,7 @@ router.post('/', async (req, res) => {
     req.session.user = user;
     res.sendStatus(200);
   } else {
-    res.sendStatus(400)
+    res.sendStatus(409)
   }
 
 

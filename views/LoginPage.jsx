@@ -19,6 +19,7 @@ module.exports = function LoginPage() {
       />
       <button type="submit">Submit</button>
     </form>
+    <div className="js-login-error"></div>
     </Layout>
   );
 };
