@@ -1,0 +1,46 @@
+h1 {
+  font-size: 50px;
+  color: red;
+}
+
+.sock {
+  position: relative;
+	width: 125px;
+	height: 299px;
+	background: #ccc;
+  background-repeat: no-repeat;
+  background-position: center;
+	border-top: solid 10px rebeccapurple;
+	border-bottom: dashed 1px rebeccapurple;
+	z-index: 1;
+  --pseudo-after-background: #ccc;
+  --pseudo-before-background: #ccc;
+  --pseudo-after-picture: none;
+  --pseudo-before-picture: none;
+}
+
+.sock:before {
+	content: '';
+	display: block;
+	position: absolute;
+	width: 125px;
+	height:100px;
+	top: 300px;
+	z-index:-1;
+	border-radius: 0 0 75px 35px;
+	background: var(--pseudo-before-background);
+  background-image: var(--pseudo-before-picture);
+}
+.sock:after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 308px;
+	right: 107px;
+	width: 125px;
+	height: 250px;
+	background: var(--pseudo-after-background);
+	border-radius: 0 0 75px 75px;
+	transform: rotate(45deg);
+	border-top: dashed 1px rebeccapurple;
+}
