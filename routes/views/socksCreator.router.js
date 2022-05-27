@@ -13,8 +13,6 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const { color, picture, pattern } = req.body;
-  console.log(color);
-  console.log(req.body);
 
   const sock = await Sock.create({
     color, picture, pattern, user_id: req.session.user.id,
