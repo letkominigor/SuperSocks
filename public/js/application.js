@@ -1,7 +1,10 @@
 const bodyElement = document.querySelector('.js-body');
 const registerLink = document.querySelector('.js-register-link');
 const loginLink = document.querySelector('.js-login-link');
-const favouriteButton = document.querySelector('.js-favourite');
+const buyButton = document.querySelector('.js-buy');
+// const favouriteButton = document.querySelector('.js-favourite');
+const creatorForm = document.querySelector('.js-form-creator');
+// const basket = document.querySelector('.js-basket');
 
 const sock = document.querySelector('.js-sock');
 const colorSelect = document.querySelector('.js-color');
@@ -32,15 +35,10 @@ async function handleLoginLink(e) {
   bodyElement.innerHTML = html;
 }
 
-async function handleFavouriteSubmit(e) {
-  e.preventDefault();
-}
-
 function handleSelectColorClick(e) {
   e.preventDefault();
 
   const color = e.target.value;
-
   sock.style.setProperty('--pseudo-after-background', `${color}`);
   sock.style.setProperty('--pseudo-before-background', `${color}`);
   sock.style.background = `${color}`;
@@ -49,8 +47,63 @@ function handleSelectColorClick(e) {
 function handleSelectPictureClick(e) {
   e.preventDefault();
 
-  console.log(e.target.value);
   sock.style.backgroundImage = `url(${e.target.value})`;
+}
+
+// function handleSelectPatternClick(e) {
+//   e.preventDefault();
+
+// }
+
+async function handleFormSubmit(e) {
+  e.preventDefault();
+
+  let color = colorSelect.value;
+  let pattern = patternSelect.value;
+  let picture = pictureSelect.value;
+  const body = JSON.stringify({ color, pattern, picture });
+
+  if (e.target.classList.contains('js-favourite')) {
+    const response = await fetch('/creator', {
+      method: 'POST',
+      body,
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    await response.text();
+  }
+
+  if (e.target.classList.contains('js-buy')) {
+    const response = await fetch('/creator/buy', {
+      method: 'POST',
+      body,
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    await response.text();
+  }
+
+  if (e.target.classList.contains('js-clear-form')) {
+    color = 'red';
+    pattern = 1;
+    picture = 1;
+  }
+}
+
+async function handleBuySubmit(e) {
+  e.preventDefault();
+
+  const {
+    method,
+    action: url,
+  } = e.target;
+
+  const response = await fetch(url, {
+    method,
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  await response.text();
 }
 
 if (registerLink) {
@@ -61,16 +114,20 @@ if (loginLink) {
   loginLink.addEventListener('click', handleLoginLink);
 }
 
-if (favouriteButton) {
-  favouriteButton.addEventListener('submit', handleFavouriteSubmit);
+if (creatorForm) {
+  creatorForm.addEventListener('click', handleFormSubmit);
 }
+
+// if (buyButton) {
+//   buyButton.addEventListener('submit', handleBuySubmit);
+// }
 
 if (colorSelect) {
   colorSelect.addEventListener('click', handleSelectColorClick);
 }
 
 // if (patternSelect) {
-//   patternSelect.addEventListener('click', handleSelectClick);
+//   patternSelect.addEventListener('click', handleSelectPatternClick);
 // }
 
 if (pictureSelect) {

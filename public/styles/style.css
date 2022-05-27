@@ -10,7 +10,6 @@ h1 {
 	background: #ccc;
   background-repeat: no-repeat;
   background-position: center;
-  background-attachment: fixed;
 	border-top: solid 10px rebeccapurple;
 	border-bottom: dashed 1px rebeccapurple;
 	z-index: 1;
