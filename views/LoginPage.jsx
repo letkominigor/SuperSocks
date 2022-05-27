@@ -1,7 +1,9 @@
 const React = require('react');
+const Layout = require('./Layout');
 
 module.exports = function LoginPage() {
   return (
+    <Layout>
     <form action="/login" method="POST" className="js-login">
       <label htmlFor="username">Username</label>
       <input
@@ -17,5 +19,6 @@ module.exports = function LoginPage() {
       />
       <button type="submit">Submit</button>
     </form>
+    </Layout>
   );
 };

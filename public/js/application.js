@@ -11,17 +11,54 @@ const colorSelect = document.querySelector('.js-color');
 const patternSelect = document.querySelector('.js-pattern');
 const pictureSelect = document.querySelector('.js-picture');
 
-async function handleRegisterLink(e) {
-  e.preventDefault();
 
-  const response = await fetch('/register', {
-    method: 'GET',
+// document.querySelector('.js-register').addEventListener('submit', (event) => {
+//   event.preventDefault()
+//   console.log('KOSTYA DRUG ADICTET');
+// })
+
+document.querySelector('.js-register').addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const { username, password } = event.target
+
+
+  const validate = await fetch('/register', {
+    method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-  });
+    body: JSON.stringify({username: username.value, password: password.value})
+  })
 
-  const html = await response.text();
-  bodyElement.innerHTML = html;
-}
+  const validateAwait = await validate.text();
+  console.log(validateAwait);
+  
+  if (validateAwait === 'OK') {
+    window.location.href = '/'
+    
+  } else {
+    // document.querySelector('.js-register').innerHTML += 'ИДИ НАХУЙ ПО БРАТСКИ'
+    document.querySelector('.js-div-error').innerHTML = `Имя пользователя ${username.value} занято`
+  }
+})
+
+// async function handleRegisterLink(e) {
+//   e.preventDefault();
+  
+  
+//   const response = await fetch('/register', {
+//     method: 'GET',
+//     headers: { 'Content-Type': 'application/json' },
+//   });
+  
+//   const html = await response.text();
+//   bodyElement.innerHTML = html;
+
+
+    
+//   })
+  
+  
+// }
 
 async function handleLoginLink(e) {
   e.preventDefault();

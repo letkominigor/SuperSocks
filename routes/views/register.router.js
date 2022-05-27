@@ -10,6 +10,7 @@ const { SALT_ROUNDS } = require('../../config/config');
 router.get('/', (req, res) => {
   const registerForm = React.createElement(RegisterPage);
   const html = ReactDOMServer.renderToStaticMarkup(registerForm);
+  res.write('<!DOCTYPE html>')
   res.end(html);
 });
 
@@ -18,19 +19,18 @@ router.post('/', async (req, res) => {
 
   const { username, password } = req.body;
 
+
   let user;
 
   try {
     user = await User.findOne({
       where: { login: username},
     })
-    console.log('username already exist');
-    res.redirect('/')
   } catch (error) {
     console.log('All good');
   }
 
-  if(!user) {
+  if(user === null) {
     user = await User.create({
       login: username,
       password: await bcrypt.hash(password, SALT_ROUNDS),
@@ -39,7 +39,9 @@ router.post('/', async (req, res) => {
     })
 
     req.session.user = user;
-    res.redirect('/');
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(400)
   }
 
 
