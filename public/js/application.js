@@ -9,56 +9,51 @@ const socks = document.querySelectorAll('.js-sock');
 const colorSelect = document.querySelector('.js-color');
 const patternSelect = document.querySelector('.js-pattern');
 const pictureSelect = document.querySelector('.js-picture');
+const jsPurchases = document.querySelector('.js-purchases');
 
-// const buyButton = document.querySelector('.js-buy');
 const deleteButton = document.querySelector('.js-delete');
 
-// async function handleRegisterLink(e) {
-//   e.preventDefault();
-
-// document.querySelector('.js-register').addEventListener('submit', (event) => {
-//   event.preventDefault()
-//   console.log('KOSTYA DRUG ADICTET');
-// })
 if (document.querySelector('.js-register')) {
   document.querySelector('.js-register').addEventListener('submit', async (event) => {
     event.preventDefault();
-  
-    const { username, password } = event.target
-  
-  
+
+    const { username, password } = event.target;
+
     const response = await fetch('/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({username: username.value, password: password.value})
-    })
-  
+      body: JSON.stringify({ username: username.value, password: password.value }),
+    });
+
     const validateAwait = await response.text();
+
     console.log(response); 
 
     if(response.status == 405) {
       return document.querySelector('.js-register-error').innerHTML = `Недопустимые знаки в логине`
     }
   
+    console.log(response);
+
     if (validateAwait === 'OK') {
-      window.location.href = '/'
-      
+      window.location.href = '/';
     } else {
       // document.querySelector('.js-register').innerHTML += 'ИДИ НАХУЙ ПО БРАТСКИ'
-      document.querySelector('.js-register-error').innerHTML = `Имя пользователя ${username.value} занято`
+      document.querySelector('.js-register-error').innerHTML = `Имя пользователя ${username.value} занято`;
     }
-  })
+  });
 }
 
 if (document.querySelector('.js-login')) {
-  document.querySelector('.js-login').addEventListener('submit', async (event) =>{
+  document.querySelector('.js-login').addEventListener('submit', async (event) => {
     event.preventDefault();
-  
+
     const { username, password } = event.target;
-  
+
     const response = await fetch('/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+
       body: JSON.stringify({username: username.value, password: password.value})
     })
 
@@ -66,47 +61,16 @@ if (document.querySelector('.js-login')) {
       return document.querySelector('.js-login-error').innerHTML = `Недопустимые знаки в логине`
     }  
   
+      body: JSON.stringify({ username: username.value, password: password.value }),
+    });
+
     if (response.status == 409) {
-      document.querySelector(".js-login-error").innerHTML = 'Неправильные логин или пароль'
+      document.querySelector('.js-login-error').innerHTML = 'Неправильные логин или пароль';
     } else {
-      window.location.href = '/'
+      window.location.href = '/';
     }
-    
-  })
-
+  });
 }
-
-
-// async function handleRegisterLink(e) {
-//   e.preventDefault();
-  
-  
-//   const response = await fetch('/register', {
-//     method: 'GET',
-//     headers: { 'Content-Type': 'application/json' },
-//   });
-  
-//   const html = await response.text();
-//   bodyElement.innerHTML = html;
-
-
-    
-//   })
-  
-  
-// }
-
-// async function handleLoginLink(e) {
-//   e.preventDefault();
-
-//   const response = await fetch('/login', {
-//     method: 'GET',
-//     headers: { 'Content-Type': 'application/json' },
-//   });
-
-//   const html = await response.text();
-//   bodyElement.innerHTML = html;
-// }
 
 function handleSelectColorClick(e) {
   e.preventDefault();
@@ -155,30 +119,7 @@ async function handleFormSubmit(e) {
 
     await response.text();
   }
-
-  // if (e.target.classList.contains('js-clear-form')) {
-  //   console.log(color);
-  //   color = 'red';
-  //   pattern = '1';
-  //   picture = '1';
-  // }
 }
-
-// async function handleBuySubmit(e) {
-//   e.preventDefault();
-
-//   const {
-//     method,
-//     action: url,
-//   } = e.target;
-
-//   const response = await fetch(url, {
-//     method,
-//     headers: { 'Content-Type': 'application/json' },
-//   });
-
-//   await response.text();
-// }
 
 async function handleDeleteBuntton(e) {
   e.preventDefault();
@@ -198,7 +139,6 @@ async function handleDeleteBuntton(e) {
 
   if (e.target.classList.contains('js-buy')) {
     const { id } = e.target.parentNode.parentNode;
-    console.log(id);
 
     document.getElementById(`${id}`).remove();
     const body = JSON.stringify({ id });
@@ -209,25 +149,16 @@ async function handleDeleteBuntton(e) {
     });
 
     const html = await response.text();
-    // document.querySelector('.js-sock-purchase').innerHTML += html;
+    jsPurchases.innerHTML += html;
+    if (deleteButton) {
+      bodyElement.addEventListener('click', handleDeleteBuntton);
+    }
   }
 }
-
-// if (registerLink) {
-//   registerLink.addEventListener('click', handleRegisterLink);
-// }
-
-// if (loginLink) {
-//   loginLink.addEventListener('click', handleLoginLink);
-// }
 
 if (creatorForm) {
   creatorForm.addEventListener('click', handleFormSubmit);
 }
-
-// if (buyButton) {
-//   buyButton.addEventListener('submit', handleBuySubmit);
-// }
 
 if (deleteButton) {
   bodyElement.addEventListener('click', handleDeleteBuntton);
@@ -236,10 +167,6 @@ if (deleteButton) {
 if (colorSelect) {
   colorSelect.addEventListener('click', handleSelectColorClick);
 }
-
-// if (patternSelect) {
-//   patternSelect.addEventListener('click', handleSelectPatternClick);
-// }
 
 if (pictureSelect) {
   pictureSelect.addEventListener('click', handleSelectPictureClick);

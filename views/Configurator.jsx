@@ -35,7 +35,7 @@ module.exports = function Configurator({ user }) {
         <label htmlFor="picture">Картинка:</label>
         <select id="picture" className="js-picture" name="picture">
           <option value="/images/goku.jpeg">1</option>
-          <option>2</option>
+          <option value="/images/muchi.jpg">2</option>
           <option>3</option>
           <option>4</option>
           <option>5</option>
