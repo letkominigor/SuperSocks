@@ -131,7 +131,7 @@ async function handleDeleteBuntton(e) {
 
     document.getElementById(`${id}`).remove();
     const body = JSON.stringify({ id });
-    const response = await fetch('sock-list', {
+    const response = await fetch('socks-list', {
       method: 'PUT',
       body,
       headers: { 'content-Type': 'application/json' },

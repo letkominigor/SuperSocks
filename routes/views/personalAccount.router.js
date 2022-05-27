@@ -36,9 +36,14 @@ router.delete('/', async (req, res) => {
 });
 
 router.put('/', async (req, res) => {
-  console.log(req.body.id);
-
-  await Purchase.create({ user_id: req.session.user.id, sock_id: req.body.id });
+  console.log(req.session.user.id);
+  await Purchase.create({
+    user_id: req.session.user.id,
+    sock_id: req.body.id,
+    // include: {
+    //   model: Sock,
+    // },
+  });
   await Favorite.destroy({ where: { sock_id: req.body.id } });
 });
 
