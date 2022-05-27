@@ -3,7 +3,10 @@ const React = require('react');
 module.exports = function Footer() {
   return (
     <footer>
-      <ul style={{ display: 'flex', flexDirection: 'row', listStyleType: 'none' }}>
+      <ul style={{
+        display: 'flex', flexDirection: 'row', listStyleType: 'none', justifyContent: 'space-between',
+      }}
+      >
         <li>
           <a href="/">Address</a>
         </li>
