@@ -1,7 +1,9 @@
 const React = require('react');
+const Layout = require('./Layout');
 
 module.exports = function RegisterPage() {
   return (
+    <Layout>
     <form action="/register" method="POST" className="js-register">
       <label htmlFor="username">Username</label>
       <input
@@ -17,5 +19,7 @@ module.exports = function RegisterPage() {
       />
       <button type="submit">Submit</button>
     </form>
+    <div className="js-register-error"></div>
+    </Layout>
   );
 };
