@@ -7,7 +7,10 @@ module.exports = function Navbar({ user }) {
         user
           ? (
             <nav>
-              <ul style={{ display: 'flex', flexDirection: 'row', listStyleType: 'none' }}>
+              <ul style={{
+                display: 'flex', flexDirection: 'row', listStyleType: 'none', justifyContent: 'space-between',
+              }}
+              >
                 <li><a href="/">Logo</a></li>
                 <li><a href="/logout" className="js-logout">Logout</a></li>
                 <li><a href="/creator" className="js-creator">Generate a sock</a></li>
@@ -17,7 +20,10 @@ module.exports = function Navbar({ user }) {
           )
           : (
             <nav>
-              <ul style={{ display: 'flex', flexDirection: 'row', listStyleType: 'none' }}>
+              <ul style={{
+                display: 'flex', flexDirection: 'row', listStyleType: 'none', justifyContent: 'space-between',
+              }}
+              >
                 <li><a href="/">Logo</a></li>
                 <li><a href="/register" className="js-register-link">Register</a></li>
                 <li><a href="/login" className="js-login-link">Login</a></li>
