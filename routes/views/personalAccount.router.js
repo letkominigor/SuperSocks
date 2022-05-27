@@ -5,6 +5,7 @@ const ReactDOMServer = require('react-dom/server');
 const { Sock, Favorite, Purchase } = require('../../Database/models');
 
 const PersonalAccount = require('../../views/PersonalAccount');
+const PurchasedSock = require('../../views/PurchasedSock');
 
 router.get('/', async (req, res) => {
   const userId = req.session.user.id;
@@ -22,7 +23,6 @@ router.get('/', async (req, res) => {
       model: Sock,
     },
   });
-  console.log(purchaseSocks);
   const user = req.session.user.login;
   const personalAccount = React.createElement(PersonalAccount, { user, favoriteSocks, purchaseSocks });
   const html = ReactDOMServer.renderToStaticMarkup(personalAccount);
@@ -36,15 +36,16 @@ router.delete('/', async (req, res) => {
 });
 
 router.put('/', async (req, res) => {
-  console.log(req.session.user.id);
   await Purchase.create({
     user_id: req.session.user.id,
     sock_id: req.body.id,
-    // include: {
-    //   model: Sock,
-    // },
+
   });
+  const sock = await Sock.findOne({ where: { id: req.body.id } });
   await Favorite.destroy({ where: { sock_id: req.body.id } });
+  const body = React.createElement(PurchasedSock, { sock });
+  const html = ReactDOMServer.renderToStaticMarkup(body);
+  res.end(html);
 });
 
 module.exports = router;
