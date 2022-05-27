@@ -6,7 +6,7 @@ const PurchasedSock = require('./PurchasedSock');
 module.exports = function PersonalAccount({ user, favoriteSocks, purchaseSocks }) {
   return (
     <Layout user={user}>
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <div c style={{ display: 'flex', flexDirection: 'column' }}>
           {
             favoriteSocks.length

@@ -42,6 +42,7 @@ router.put('/', async (req, res) => {
 
   });
   const sock = await Sock.findOne({ where: { id: req.body.id } });
+  console.log(sock);
   await Favorite.destroy({ where: { sock_id: req.body.id } });
   const body = React.createElement(PurchasedSock, { sock });
   const html = ReactDOMServer.renderToStaticMarkup(body);

@@ -4,7 +4,7 @@ module.exports = function FavoriteSock({ sock }) {
   return (
     <div
       id={sock.sock_id}
-      style={{ display: 'flex', flexDirection: 'column' }}
+      style={{ display: 'flex', flexDirection: 'column', marginLeft: 100 }}
     >
       <div
         // id={sock.sock_id}
