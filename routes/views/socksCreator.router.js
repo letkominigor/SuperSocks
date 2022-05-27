@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
-const e = require('express');
 const Configurator = require('../../views/Configurator');
 
 const { Favorite, Sock, Purchase } = require('../../Database/models');

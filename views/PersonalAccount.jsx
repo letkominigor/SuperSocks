@@ -1,34 +1,28 @@
 const React = require('react');
 const FavoriteSock = require('./FavoriteSock');
 const Layout = require('./Layout');
+const PurchasedSock = require('./PurchasedSock');
 
-module.exports = function PersonalAccount({ user, socks }) {
+module.exports = function PersonalAccount({ user, favoriteSocks, purchaseSocks }) {
   return (
     <Layout user={user}>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        {
-          socks.map((sock) => <FavoriteSock key={sock.id} sock={sock} />)
-        }
-      </div>
       <div style={{ display: 'flex' }}>
-        <button type="submit" className="js-buy">Buy</button>
-        <button type="submit" className="js-delete">Delete</button>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          {
+            favoriteSocks.length
+              ? favoriteSocks.map((sock) => <FavoriteSock key={sock.id} sock={sock} />)
+              : (<>There is no fav socks</>)
+          }
+        </div>
+        <div>
+          {
+            purchaseSocks.length
+              ? purchaseSocks.map((sock) => <PurchasedSock key={sock.id} sock={sock} />)
+              : (<>There is no purchased socks</>)
+          }
+        </div>
       </div>
-      <div />
 
-      <form action="/account" method="POST" className="Favorite">
-        <div className="Icon">
-          <img src="" alt="" />
-
-        </div>
-      </form>
-      {/* <form action="/account" method="GET" className="Purchased">
-        <div className="Icon">
-          <img src="" alt="" />
-          <button type="submit" className="delete">Delete</button>
-        </div>
-      </form> */}
     </Layout>
-
   );
 };
