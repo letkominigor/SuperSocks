@@ -30,4 +30,9 @@ router.get('/', async (req, res) => {
   res.end(html);
 });
 
+router.delete('/', async (req, res) => {
+  console.log(req.body.id);
+  await Favorite.destroy({ where: { sock_id: req.body.id } });
+});
+
 module.exports = router;

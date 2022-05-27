@@ -1,7 +1,7 @@
 const bodyElement = document.querySelector('.js-body');
 const registerLink = document.querySelector('.js-register-link');
 const loginLink = document.querySelector('.js-login-link');
-// const buyButton = document.querySelector('.js-buy');
+
 const creatorForm = document.querySelector('.js-form-creator');
 
 const sock = document.querySelector('.js-sock');
@@ -9,6 +9,9 @@ const socks = document.querySelectorAll('.js-sock');
 const colorSelect = document.querySelector('.js-color');
 const patternSelect = document.querySelector('.js-pattern');
 const pictureSelect = document.querySelector('.js-picture');
+
+// const buyButton = document.querySelector('.js-buy');
+const deleteButton = document.querySelector('.js-delete');
 
 async function handleRegisterLink(e) {
   e.preventDefault();
@@ -106,6 +109,23 @@ async function handleFormSubmit(e) {
 //   await response.text();
 // }
 
+async function handleDeleteBuntton(e) {
+  e.preventDefault();
+
+  if (e.target.classList.contains('js-delete')) {
+    const { id } = e.target.parentNode.parentNode;
+    document.getElementById(`${id}`).remove();
+    const body = JSON.stringify({ id });
+    const response = await fetch('socks-list', {
+      method: 'DELETE',
+      body,
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    await response.text();
+  }
+}
+
 if (registerLink) {
   registerLink.addEventListener('click', handleRegisterLink);
 }
@@ -122,6 +142,10 @@ if (creatorForm) {
 //   buyButton.addEventListener('submit', handleBuySubmit);
 // }
 
+if (deleteButton) {
+  bodyElement.addEventListener('click', handleDeleteBuntton);
+}
+
 if (colorSelect) {
   colorSelect.addEventListener('click', handleSelectColorClick);
 }
@@ -132,12 +156,4 @@ if (colorSelect) {
 
 if (pictureSelect) {
   pictureSelect.addEventListener('click', handleSelectPictureClick);
-}
-
-if (socks) {
-  // socks.map((sock) => {
-  //   // sock.style.setProperty('--pseudo-after-background', ``);
-  //   console.log(sock.classList);
-  // });
-  console.log(sock);
 }

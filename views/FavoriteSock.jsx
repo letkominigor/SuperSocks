@@ -2,8 +2,13 @@ const React = require('react');
 
 module.exports = function FavoriteSock({ sock }) {
   return (
-    <div id={sock.id} style={{ display: 'flex', flexDirection: 'column' }}>
+    <div
+      id={sock.sock_id}
+      style={{ display: 'flex', flexDirection: 'column' }}
+    >
       <div
+        // id={sock.sock_id}
+        data-id={sock.sock_id}
         className="js-sock sock"
         style={{
           marginTop: 50,
