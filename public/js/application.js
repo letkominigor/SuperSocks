@@ -1,15 +1,17 @@
 const bodyElement = document.querySelector('.js-body');
 const registerLink = document.querySelector('.js-register-link');
 const loginLink = document.querySelector('.js-login-link');
-const buyButton = document.querySelector('.js-buy');
-// const favouriteButton = document.querySelector('.js-favourite');
+
 const creatorForm = document.querySelector('.js-form-creator');
-// const basket = document.querySelector('.js-basket');
 
 const sock = document.querySelector('.js-sock');
+const socks = document.querySelectorAll('.js-sock');
 const colorSelect = document.querySelector('.js-color');
 const patternSelect = document.querySelector('.js-pattern');
 const pictureSelect = document.querySelector('.js-picture');
+
+// const buyButton = document.querySelector('.js-buy');
+const deleteButton = document.querySelector('.js-delete');
 
 async function handleRegisterLink(e) {
   e.preventDefault();
@@ -41,7 +43,7 @@ function handleSelectColorClick(e) {
   const color = e.target.value;
   sock.style.setProperty('--pseudo-after-background', `${color}`);
   sock.style.setProperty('--pseudo-before-background', `${color}`);
-  sock.style.background = `${color}`;
+  sock.style.backgroundColor = `${color}`;
 }
 
 function handleSelectPictureClick(e) {
@@ -58,9 +60,9 @@ function handleSelectPictureClick(e) {
 async function handleFormSubmit(e) {
   e.preventDefault();
 
-  let color = colorSelect.value;
-  let pattern = patternSelect.value;
-  let picture = pictureSelect.value;
+  const color = colorSelect.value;
+  const pattern = patternSelect.value;
+  const picture = pictureSelect.value;
   const body = JSON.stringify({ color, pattern, picture });
 
   if (e.target.classList.contains('js-favourite')) {
@@ -83,27 +85,61 @@ async function handleFormSubmit(e) {
     await response.text();
   }
 
-  if (e.target.classList.contains('js-clear-form')) {
-    color = 'red';
-    pattern = 1;
-    picture = 1;
-  }
+  // if (e.target.classList.contains('js-clear-form')) {
+  //   console.log(color);
+  //   color = 'red';
+  //   pattern = '1';
+  //   picture = '1';
+  // }
 }
 
-async function handleBuySubmit(e) {
+// async function handleBuySubmit(e) {
+//   e.preventDefault();
+
+//   const {
+//     method,
+//     action: url,
+//   } = e.target;
+
+//   const response = await fetch(url, {
+//     method,
+//     headers: { 'Content-Type': 'application/json' },
+//   });
+
+//   await response.text();
+// }
+
+async function handleDeleteBuntton(e) {
   e.preventDefault();
 
-  const {
-    method,
-    action: url,
-  } = e.target;
+  if (e.target.classList.contains('js-delete')) {
+    const { id } = e.target.parentNode.parentNode;
+    document.getElementById(`${id}`).remove();
+    const body = JSON.stringify({ id });
+    const response = await fetch('socks-list', {
+      method: 'DELETE',
+      body,
+      headers: { 'Content-Type': 'application/json' },
+    });
 
-  const response = await fetch(url, {
-    method,
-    headers: { 'Content-Type': 'application/json' },
-  });
+    await response.text();
+  }
 
-  await response.text();
+  if (e.target.classList.contains('js-buy')) {
+    const { id } = e.target.parentNode.parentNode;
+    console.log(id);
+
+    document.getElementById(`${id}`).remove();
+    const body = JSON.stringify({ id });
+    const response = await fetch('socks-list', {
+      method: 'PUT',
+      body,
+      headers: { 'content-Type': 'application/json' },
+    });
+
+    const html = await response.text();
+    // document.querySelector('.js-sock-purchase').innerHTML += html;
+  }
 }
 
 if (registerLink) {
@@ -121,6 +157,10 @@ if (creatorForm) {
 // if (buyButton) {
 //   buyButton.addEventListener('submit', handleBuySubmit);
 // }
+
+if (deleteButton) {
+  bodyElement.addEventListener('click', handleDeleteBuntton);
+}
 
 if (colorSelect) {
   colorSelect.addEventListener('click', handleSelectColorClick);

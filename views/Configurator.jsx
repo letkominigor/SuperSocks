@@ -13,8 +13,8 @@ module.exports = function Configurator({ user }) {
       >
         <label htmlFor="color">Цвет:</label>
         <select id="color" className="js-color" name="color">
-          <option>red</option>
-          <option>blue</option>
+          <option value="red">red</option>
+          <option value="blue">blue</option>
           <option>green</option>
           <option>orange</option>
           <option>yellow</option>
@@ -24,8 +24,8 @@ module.exports = function Configurator({ user }) {
         </select>
         <label htmlFor="pattern">Узор:</label>
         <select id="pattern" className="js-pattern" name="pattern">
-          <option>1</option>
-          <option>2</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
           <option>3</option>
           <option>4</option>
           <option>5</option>

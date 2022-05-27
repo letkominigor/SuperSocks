@@ -11,8 +11,7 @@ module.exports = function Navbar({ user }) {
                 <li><a href="/">Logo</a></li>
                 <li><a href="/logout" className="js-logout">Logout</a></li>
                 <li><a href="/creator" className="js-creator">Generate a sock</a></li>
-                <li><a href="/socks-list" className="js-socks-list">Favourite</a></li>
-                <li><a href="/" className="js-basket">Basket</a></li>
+                <li><a href="/socks-list" className="js-socks-list">Your socks</a></li>
               </ul>
             </nav>
           )
