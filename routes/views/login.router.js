@@ -16,9 +16,11 @@ router.post('/', async (req, res) => {
   const user = await User.findOne({ where: { login: req.body.username } });
   if (await bcrypt.compare(req.body.password, user.password)) {
     req.session.user = user;
-    res.redirect('/');
+    res.sendStatus(200);
+  } else {
+
+    res.sendStatus(409);
   }
-  res.end('Error');
 });
 
 module.exports = router;

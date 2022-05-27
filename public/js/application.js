@@ -13,29 +13,93 @@ const pictureSelect = document.querySelector('.js-picture');
 // const buyButton = document.querySelector('.js-buy');
 const deleteButton = document.querySelector('.js-delete');
 
-async function handleRegisterLink(e) {
-  e.preventDefault();
+// async function handleRegisterLink(e) {
+//   e.preventDefault();
 
-  const response = await fetch('/register', {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
-  });
-
-  const html = await response.text();
-  bodyElement.innerHTML = html;
+// document.querySelector('.js-register').addEventListener('submit', (event) => {
+//   event.preventDefault()
+//   console.log('KOSTYA DRUG ADICTET');
+// })
+if (document.querySelector('.js-register')) {
+  document.querySelector('.js-register').addEventListener('submit', async (event) => {
+    event.preventDefault();
+  
+    const { username, password } = event.target
+  
+  
+    const response = await fetch('/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({username: username.value, password: password.value})
+    })
+  
+    const validateAwait = await response.text();
+    console.log(response);  
+  
+    if (validateAwait === 'OK') {
+      window.location.href = '/'
+      
+    } else {
+      // document.querySelector('.js-register').innerHTML += 'ИДИ НАХУЙ ПО БРАТСКИ'
+      document.querySelector('.js-register-error').innerHTML = `Имя пользователя ${username.value} занято`
+    }
+  })
 }
 
-async function handleLoginLink(e) {
-  e.preventDefault();
+if (document.querySelector('.js-login')) {
+  document.querySelector('.js-login').addEventListener('submit', async (event) =>{
+    event.preventDefault();
+  
+    const { username, password } = event.target;
+  
+    const response = await fetch('/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({username: username.value, password: password.value})
+    })
+  
+  
+    if (response.status == 409) {
+      document.querySelector(".js-login-error").innerHTML = 'Неправильные логин или пароль'
+    } else {
+      window.location.href = '/'
+    }
+    
+  })
 
-  const response = await fetch('/login', {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
-  });
-
-  const html = await response.text();
-  bodyElement.innerHTML = html;
 }
+
+
+// async function handleRegisterLink(e) {
+//   e.preventDefault();
+  
+  
+//   const response = await fetch('/register', {
+//     method: 'GET',
+//     headers: { 'Content-Type': 'application/json' },
+//   });
+  
+//   const html = await response.text();
+//   bodyElement.innerHTML = html;
+
+
+    
+//   })
+  
+  
+// }
+
+// async function handleLoginLink(e) {
+//   e.preventDefault();
+
+//   const response = await fetch('/login', {
+//     method: 'GET',
+//     headers: { 'Content-Type': 'application/json' },
+//   });
+
+//   const html = await response.text();
+//   bodyElement.innerHTML = html;
+// }
 
 function handleSelectColorClick(e) {
   e.preventDefault();
@@ -142,13 +206,13 @@ async function handleDeleteBuntton(e) {
   }
 }
 
-if (registerLink) {
-  registerLink.addEventListener('click', handleRegisterLink);
-}
+// if (registerLink) {
+//   registerLink.addEventListener('click', handleRegisterLink);
+// }
 
-if (loginLink) {
-  loginLink.addEventListener('click', handleLoginLink);
-}
+// if (loginLink) {
+//   loginLink.addEventListener('click', handleLoginLink);
+// }
 
 if (creatorForm) {
   creatorForm.addEventListener('click', handleFormSubmit);
