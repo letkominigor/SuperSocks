@@ -2,9 +2,7 @@ const bodyElement = document.querySelector('.js-body');
 const registerLink = document.querySelector('.js-register-link');
 const loginLink = document.querySelector('.js-login-link');
 const buyButton = document.querySelector('.js-buy');
-// const favouriteButton = document.querySelector('.js-favourite');
 const creatorForm = document.querySelector('.js-form-creator');
-// const basket = document.querySelector('.js-basket');
 
 const sock = document.querySelector('.js-sock');
 const colorSelect = document.querySelector('.js-color');
@@ -81,30 +79,35 @@ async function handleFormSubmit(e) {
     });
 
     await response.text();
+    console.log(color.options);
+    color.options[0] = 'red';
+    pattern = '1';
+    picture = '1';
   }
 
   if (e.target.classList.contains('js-clear-form')) {
+    console.log(color);
     color = 'red';
-    pattern = 1;
-    picture = 1;
+    pattern = '1';
+    picture = '1';
   }
 }
 
-async function handleBuySubmit(e) {
-  e.preventDefault();
+// async function handleBuySubmit(e) {
+//   e.preventDefault();
 
-  const {
-    method,
-    action: url,
-  } = e.target;
+//   const {
+//     method,
+//     action: url,
+//   } = e.target;
 
-  const response = await fetch(url, {
-    method,
-    headers: { 'Content-Type': 'application/json' },
-  });
+//   const response = await fetch(url, {
+//     method,
+//     headers: { 'Content-Type': 'application/json' },
+//   });
 
-  await response.text();
-}
+//   await response.text();
+// }
 
 if (registerLink) {
   registerLink.addEventListener('click', handleRegisterLink);
