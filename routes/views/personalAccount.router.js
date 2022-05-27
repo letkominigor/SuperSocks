@@ -31,7 +31,14 @@ router.get('/', async (req, res) => {
 });
 
 router.delete('/', async (req, res) => {
+  await Favorite.destroy({ where: { sock_id: req.body.id } });
+  await Sock.destroy({ where: { id: req.body.id } });
+});
+
+router.put('/', async (req, res) => {
   console.log(req.body.id);
+
+  await Purchase.create({ user_id: req.session.user.id, sock_id: req.body.id });
   await Favorite.destroy({ where: { sock_id: req.body.id } });
 });
 

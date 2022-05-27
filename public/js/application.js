@@ -124,6 +124,22 @@ async function handleDeleteBuntton(e) {
 
     await response.text();
   }
+
+  if (e.target.classList.contains('js-buy')) {
+    const { id } = e.target.parentNode.parentNode;
+    console.log(id);
+
+    document.getElementById(`${id}`).remove();
+    const body = JSON.stringify({ id });
+    const response = await fetch('sock-list', {
+      method: 'PUT',
+      body,
+      headers: { 'content-Type': 'application/json' },
+    });
+
+    const html = await response.text();
+    // document.querySelector('.js-sock-purchase').innerHTML += html;
+  }
 }
 
 if (registerLink) {

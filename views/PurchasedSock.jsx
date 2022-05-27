@@ -2,7 +2,11 @@ const React = require('react');
 
 module.exports = function PurchasedSock({ sock }) {
   return (
-    <div id={sock.id} style={{ display: 'flex', flexDirection: 'column' }}>
+    <div
+      id={sock.id}
+      className="js-sock-purchase"
+      style={{ display: 'flex', flexDirection: 'column' }}
+    >
       <div
         className="js-sock sock"
         style={{
