@@ -13,13 +13,24 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const user = await User.findOne({ where: { login: req.body.username } });
-  if (await bcrypt.compare(req.body.password, user.password)) {
-    req.session.user = user;
-    res.sendStatus(200);
-  } else {
+  const username = req.body.username.trim().toLowerCase();
+  const password = req.body.password.trim().toLowerCase();
 
+  if(username.split('').includes(' ')) {
+    res.sendStatus(405)
+    return
+  }
+
+  const user = await User.findOne({ where: { login: username } });
+  if (user === null) {
     res.sendStatus(409);
+  } else {
+    if (await bcrypt.compare(password, user.password)) {
+      req.session.user = user;
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(409);
+    }
   }
 });
 

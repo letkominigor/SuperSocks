@@ -17,8 +17,13 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
   // register user in db
 
-  const { username, password } = req.body;
+  const username = req.body.username.trim().toLowerCase();
+  const password = req.body.password.trim().toLowerCase();
 
+  if(username.split('').includes(' ')) {
+    res.sendStatus(405)
+    return
+  }
 
   let user;
 
