@@ -137,8 +137,8 @@ async function handleDeleteBuntton(e) {
       headers: { 'content-Type': 'application/json' },
     });
 
+    document.querySelector('.js-sock-purchase').innerHTML += html;
     const html = await response.text();
-    // document.querySelector('.js-sock-purchase').innerHTML += html;
   }
 }
 
