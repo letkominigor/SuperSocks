@@ -2,8 +2,18 @@ const React = require('react');
 
 module.exports = function FavoriteSock({ sock }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <div className="js-sock sock" style={{ marginTop: 50, marginBottom: 350 }}>
+    <div id={sock.id} style={{ display: 'flex', flexDirection: 'column' }}>
+      <div
+        className="js-sock sock"
+        style={{
+          marginTop: 50,
+          marginBottom: 350,
+          backgroundColor: sock['Sock.color'],
+          '--pseudo-before-background': sock['Sock.color'],
+          '--pseudo-after-background': sock['Sock.color'],
+          backgroundImage: `url("${sock['Sock.picture']}")`,
+        }}
+      >
         <div className="js-sock-picture sock-picture" />
         <div className="sock-pattern" />
       </div>

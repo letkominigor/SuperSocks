@@ -1,10 +1,11 @@
 const bodyElement = document.querySelector('.js-body');
 const registerLink = document.querySelector('.js-register-link');
 const loginLink = document.querySelector('.js-login-link');
-const buyButton = document.querySelector('.js-buy');
+// const buyButton = document.querySelector('.js-buy');
 const creatorForm = document.querySelector('.js-form-creator');
 
 const sock = document.querySelector('.js-sock');
+const socks = document.querySelectorAll('.js-sock');
 const colorSelect = document.querySelector('.js-color');
 const patternSelect = document.querySelector('.js-pattern');
 const pictureSelect = document.querySelector('.js-picture');
@@ -39,7 +40,7 @@ function handleSelectColorClick(e) {
   const color = e.target.value;
   sock.style.setProperty('--pseudo-after-background', `${color}`);
   sock.style.setProperty('--pseudo-before-background', `${color}`);
-  sock.style.background = `${color}`;
+  sock.style.backgroundColor = `${color}`;
 }
 
 function handleSelectPictureClick(e) {
@@ -56,9 +57,9 @@ function handleSelectPictureClick(e) {
 async function handleFormSubmit(e) {
   e.preventDefault();
 
-  let color = colorSelect.value;
-  let pattern = patternSelect.value;
-  let picture = pictureSelect.value;
+  const color = colorSelect.value;
+  const pattern = patternSelect.value;
+  const picture = pictureSelect.value;
   const body = JSON.stringify({ color, pattern, picture });
 
   if (e.target.classList.contains('js-favourite')) {
@@ -79,18 +80,14 @@ async function handleFormSubmit(e) {
     });
 
     await response.text();
-    console.log(color.options);
-    color.options[0] = 'red';
-    pattern = '1';
-    picture = '1';
   }
 
-  if (e.target.classList.contains('js-clear-form')) {
-    console.log(color);
-    color = 'red';
-    pattern = '1';
-    picture = '1';
-  }
+  // if (e.target.classList.contains('js-clear-form')) {
+  //   console.log(color);
+  //   color = 'red';
+  //   pattern = '1';
+  //   picture = '1';
+  // }
 }
 
 // async function handleBuySubmit(e) {
@@ -135,4 +132,12 @@ if (colorSelect) {
 
 if (pictureSelect) {
   pictureSelect.addEventListener('click', handleSelectPictureClick);
+}
+
+if (socks) {
+  // socks.map((sock) => {
+  //   // sock.style.setProperty('--pseudo-after-background', ``);
+  //   console.log(sock.classList);
+  // });
+  console.log(sock);
 }
