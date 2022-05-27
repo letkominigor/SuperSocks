@@ -26,6 +26,13 @@ if (document.querySelector('.js-register')) {
     });
 
     const validateAwait = await response.text();
+
+    console.log(response); 
+
+    if(response.status == 405) {
+      return document.querySelector('.js-register-error').innerHTML = `Недопустимые знаки в логине`
+    }
+  
     console.log(response);
 
     if (validateAwait === 'OK') {
@@ -46,6 +53,14 @@ if (document.querySelector('.js-login')) {
     const response = await fetch('/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+
+      body: JSON.stringify({username: username.value, password: password.value})
+    })
+
+    if(response.status == 405) {
+      return document.querySelector('.js-login-error').innerHTML = `Недопустимые знаки в логине`
+    }  
+  
       body: JSON.stringify({ username: username.value, password: password.value }),
     });
 
